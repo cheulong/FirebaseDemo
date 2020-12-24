@@ -7,12 +7,13 @@ import Auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
-import OneSignal from 'react-native-onesignal';
 import functions from '@react-native-firebase/functions';
 import messaging from '@react-native-firebase/messaging';
 import dynamicLinks from '@react-native-firebase/dynamic-links';
 import inAppMessaging from '@react-native-firebase/in-app-messaging';
 import analytics from '@react-native-firebase/analytics';
+import {fcmService} from './src/FCMService';
+import {localNotificationService} from './src/LocalNotificationService';
 const firebaseConfig = {
   apiKey: 'AIzaSyDjSJpW2oWc6pLCP9bbjSYiJtGfS4tcsAc',
   authDomain: 'fir-demo-e2751.firebaseapp.com',
@@ -72,43 +73,38 @@ const Setup = () => {
     // alert(link.url);
   };
   React.useEffect(async () => {
-    await inAppMessaging().setMessagesDisplaySuppressed(true);
-    const unsubscribe = dynamicLinks().onLink(handleDynamicLink);
-    dynamicLinks()
-      .getInitialLink()
-      .then(link => {
-        alert(link.url);
-      });
-    setupCloudMessaging();
-    OneSignal.init('37c392d3-3799-46bc-ac37-e38da7fc740f', {
-      kOSSettingsKeyAutoPrompt: false,
-      kOSSettingsKeyInAppLaunchURL: false,
-      kOSSettingsKeyInFocusDisplayOption: 2,
-    });
-    OneSignal.addEventListener('received', onReceived);
-    OneSignal.addEventListener('opened', onOpened);
-    OneSignal.addEventListener('ids', onIds);
+    fcmService.registerAppWithFCM();
+    fcmService.register(onRegister, onNotification, onOpenNotification);
+    localNotificationService.configure(onOpenNotification);
 
-    // It will trigger when app was in background
-    messaging().onNotificationOpenedApp(remoteMessage => {
-      //alert(JSON.stringify(remoteMessage));
-    });
+    function onRegister(token) {
+      console.log('[App] onRegister: ', token);
+    }
 
-    // It will trigger when app was in quit mode
-    messaging().getInitialNotification(remoteMessage => {
-      // alert(JSON.stringify(remoteMessage));
-    });
+    function onNotification(notify) {
+      console.log('[App] onNotification: ', notify);
+      const options = {
+        soundName: 'default',
+        playSound: true,
+      };
+      localNotificationService.showNotification(
+        0,
+        notify.title,
+        notify.body,
+        notify,
+        options,
+      );
+    }
 
-    // If App is in foreground mode
-    messaging().onMessage(remoteMessage => {
-      // alert(JSON.stringify(remoteMessage));
-    });
+    function onOpenNotification(notify) {
+      console.log('[App] onOpenNotification: ', notify);
+      alert('Open Notification: ' + notify.body);
+    }
 
     return () => {
-      OneSignal.removeEventListener('received', onReceived);
-      OneSignal.removeEventListener('opened', onOpened);
-      OneSignal.removeEventListener('ids', onIds);
-      unsubscribe();
+      console.log('[App] unRegister');
+      fcmService.unRegister();
+      localNotificationService.unRegister();
     };
   }, []);
   return <App />;

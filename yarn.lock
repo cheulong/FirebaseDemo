@@ -998,6 +998,13 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
   integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
 
+"@react-native-community/push-notification-ios@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.8.0.tgz#7d43cb37b9e644ff3069aafa91befe71688a2dc4"
+  integrity sha512-vxvkeampafjmtDoQBN8Q4azP21l6cMX93+OQZemyIWZmG++OjCVDQVitobf/kWLm5zyGwdylejbpMGo75qo7rA==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native-community/toolbar-android@^0.1.0-rc.2":
   version "0.1.0-rc.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/toolbar-android/-/toolbar-android-0.1.0-rc.2.tgz#86cae655836afacc52d4063062cc59837d1a8640"
@@ -3349,7 +3356,7 @@ inquirer@^7.0.0:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -5293,12 +5300,10 @@ react-native-keyboard-aware-scroll-view@0.9.1:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-onesignal@^3.8.1:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.9.0.tgz#8f67a8f3c95096adcd179db556cc2838afead914"
-  integrity sha512-Ux2S+MlPb6+RUg1clmgUcwHIM4XhF0DrZTWcrBPxue3PJkuoIhtsNbxbQJA9fGSNeAMHScxr2RTofuVDp2puSw==
-  dependencies:
-    invariant "^2.2.2"
+react-native-push-notification@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-7.0.0.tgz#9c0fe01f087aa0f55885af0f5d140308fd9e529e"
+  integrity sha512-csFXvao1ugQAP5ajwVtIfylom4x0LE7OpKcsXbDuqLDE9RLm0tTxTVF3i0drgGOTGxqwlEDK28eGiUO0J9gUQg==
 
 react-native-reanimated@^1.8.0:
   version "1.10.1"

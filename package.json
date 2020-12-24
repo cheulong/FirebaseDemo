@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/push-notification-ios": "^1.8.0",
     "@react-native-community/toolbar-android": "^0.1.0-rc.2",
     "@react-native-firebase/admob": "^7.2.0",
     "@react-native-firebase/analytics": "^7.4.1",
@@ -33,7 +34,7 @@
     "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "^2.3.1",
-    "react-native-onesignal": "^3.8.1",
+    "react-native-push-notification": "^7.0.0",
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^1.0.0",
     "react-native-screens": "^2.7.0"
